@@ -1958,6 +1958,42 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+  /api/v1/namespaces/{namespace}/volumes/{volumeId}:
+    post:
+      tags:
+        - WorkflowService
+      description: CreateVolume creates a new volume in the specified namespace.
+      operationId: CreateVolume
+      parameters:
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: volumeId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVolumeRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateVolumeResponse'
+        default:
+          description: Default error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
   /api/v1/namespaces/{namespace}/worker-deployment-versions/{deployment_version.deployment_name}/{deployment_version.build_id}:
     get:
       tags:
@@ -5993,6 +6029,42 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Status'
+  /namespaces/{namespace}/volumes/{volumeId}:
+    post:
+      tags:
+        - WorkflowService
+      description: CreateVolume creates a new volume in the specified namespace.
+      operationId: CreateVolume
+      parameters:
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: volumeId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVolumeRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateVolumeResponse'
+        default:
+          description: Default error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
   /namespaces/{namespace}/worker-deployment-versions/{deployment_version.deployment_name}/{deployment_version.build_id}:
     get:
       tags:
@@ -9183,6 +9255,28 @@ components:
         conflictToken:
           type: string
           format: bytes
+    CreateVolumeRequest:
+      type: object
+      properties:
+        namespace:
+          type: string
+        volumeId:
+          type: string
+        sizeBytes:
+          type: string
+        blockSizeBytes:
+          type: integer
+          format: int32
+        requestId:
+          type: string
+          description: Used to deduplicate volume create requests.
+    CreateVolumeResponse:
+      type: object
+      properties:
+        volumeId:
+          type: string
+        runId:
+          type: string
     CreateWorkflowRuleRequest:
       type: object
       properties:

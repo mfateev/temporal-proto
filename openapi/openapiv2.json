@@ -2190,6 +2190,51 @@
         ]
       }
     },
+    "/api/v1/namespaces/{namespace}/volumes/{volumeId}": {
+      "post": {
+        "summary": "CreateVolume creates a new volume in the specified namespace.",
+        "operationId": "CreateVolume2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateVolumeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "volumeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WorkflowServiceCreateVolumeBody"
+            }
+          }
+        ],
+        "tags": [
+          "WorkflowService"
+        ]
+      }
+    },
     "/api/v1/namespaces/{namespace}/worker-deployment-versions/{deploymentVersion.deploymentName}/{deploymentVersion.buildId}": {
       "get": {
         "summary": "Describes a worker deployment version.\nExperimental. This API might significantly change or be removed in a future release.",
@@ -6690,6 +6735,51 @@
         ]
       }
     },
+    "/namespaces/{namespace}/volumes/{volumeId}": {
+      "post": {
+        "summary": "CreateVolume creates a new volume in the specified namespace.",
+        "operationId": "CreateVolume",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateVolumeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "volumeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WorkflowServiceCreateVolumeBody"
+            }
+          }
+        ],
+        "tags": [
+          "WorkflowService"
+        ]
+      }
+    },
     "/namespaces/{namespace}/worker-deployment-versions/{deploymentVersion.deploymentName}/{deploymentVersion.buildId}": {
       "get": {
         "summary": "Describes a worker deployment version.\nExperimental. This API might significantly change or be removed in a future release.",
@@ -9141,6 +9231,23 @@
         },
         "searchAttributes": {
           "$ref": "#/definitions/v1SearchAttributes"
+        }
+      }
+    },
+    "WorkflowServiceCreateVolumeBody": {
+      "type": "object",
+      "properties": {
+        "sizeBytes": {
+          "type": "string",
+          "format": "int64"
+        },
+        "blockSizeBytes": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "requestId": {
+          "type": "string",
+          "description": "Used to deduplicate volume create requests."
         }
       }
     },
@@ -12012,6 +12119,17 @@
         "conflictToken": {
           "type": "string",
           "format": "byte"
+        }
+      }
+    },
+    "v1CreateVolumeResponse": {
+      "type": "object",
+      "properties": {
+        "volumeId": {
+          "type": "string"
+        },
+        "runId": {
+          "type": "string"
         }
       }
     },

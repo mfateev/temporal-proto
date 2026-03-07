@@ -1458,4 +1458,16 @@ service WorkflowService {
     // (-- api-linter: core::0127::http-annotation=disabled
     //     aip.dev/not-precedent: Activity deletion not exposed to HTTP, users should use cancel or terminate. --)
     rpc DeleteActivityExecution (DeleteActivityExecutionRequest) returns (DeleteActivityExecutionResponse) {}
+
+    // CreateVolume creates a new volume in the specified namespace.
+    rpc CreateVolume (CreateVolumeRequest) returns (CreateVolumeResponse) {
+        option (google.api.http) = {
+            post: "/namespaces/{namespace}/volumes/{volume_id}"
+            body: "*"
+            additional_bindings {
+                post: "/api/v1/namespaces/{namespace}/volumes/{volume_id}"
+                body: "*"
+            }
+        };
+    }
 }

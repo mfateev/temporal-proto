@@ -2919,3 +2919,17 @@ message DeleteActivityExecutionRequest {
 
 message DeleteActivityExecutionResponse {
 }
+
+message CreateVolumeRequest {
+    string namespace = 1;
+    string volume_id = 2;
+    int64 size_bytes = 3;
+    int32 block_size_bytes = 4;
+    // Used to deduplicate volume create requests.
+    string request_id = 5;
+}
+
+message CreateVolumeResponse {
+    string volume_id = 1;
+    string run_id = 2;
+}
