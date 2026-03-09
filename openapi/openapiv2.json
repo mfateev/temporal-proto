@@ -2191,6 +2191,41 @@
       }
     },
     "/api/v1/namespaces/{namespace}/volumes/{volumeId}": {
+      "get": {
+        "summary": "OpenVolume reads metadata for an existing volume in the specified namespace.",
+        "operationId": "OpenVolume2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1OpenVolumeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "volumeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "WorkflowService"
+        ]
+      },
       "post": {
         "summary": "CreateVolume creates a new volume in the specified namespace.",
         "operationId": "CreateVolume2",
@@ -2227,6 +2262,96 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/WorkflowServiceCreateVolumeBody"
+            }
+          }
+        ],
+        "tags": [
+          "WorkflowService"
+        ]
+      }
+    },
+    "/api/v1/namespaces/{namespace}/volumes/{volumeId}/read": {
+      "post": {
+        "summary": "ReadBlocks reads contiguous block data from an existing volume.",
+        "operationId": "ReadBlocks2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ReadBlocksResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "volumeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WorkflowServiceReadBlocksBody"
+            }
+          }
+        ],
+        "tags": [
+          "WorkflowService"
+        ]
+      }
+    },
+    "/api/v1/namespaces/{namespace}/volumes/{volumeId}/write-batch": {
+      "post": {
+        "summary": "WriteBatch writes one or more blocks to an existing volume atomically.",
+        "operationId": "WriteBatch2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1WriteBatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "volumeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WorkflowServiceWriteBatchBody"
             }
           }
         ],
@@ -6736,6 +6861,41 @@
       }
     },
     "/namespaces/{namespace}/volumes/{volumeId}": {
+      "get": {
+        "summary": "OpenVolume reads metadata for an existing volume in the specified namespace.",
+        "operationId": "OpenVolume",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1OpenVolumeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "volumeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "WorkflowService"
+        ]
+      },
       "post": {
         "summary": "CreateVolume creates a new volume in the specified namespace.",
         "operationId": "CreateVolume",
@@ -6772,6 +6932,96 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/WorkflowServiceCreateVolumeBody"
+            }
+          }
+        ],
+        "tags": [
+          "WorkflowService"
+        ]
+      }
+    },
+    "/namespaces/{namespace}/volumes/{volumeId}/read": {
+      "post": {
+        "summary": "ReadBlocks reads contiguous block data from an existing volume.",
+        "operationId": "ReadBlocks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ReadBlocksResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "volumeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WorkflowServiceReadBlocksBody"
+            }
+          }
+        ],
+        "tags": [
+          "WorkflowService"
+        ]
+      }
+    },
+    "/namespaces/{namespace}/volumes/{volumeId}/write-batch": {
+      "post": {
+        "summary": "WriteBatch writes one or more blocks to an existing volume atomically.",
+        "operationId": "WriteBatch",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1WriteBatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "volumeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WorkflowServiceWriteBatchBody"
             }
           }
         ],
@@ -9388,6 +9638,19 @@
         }
       }
     },
+    "WorkflowServiceReadBlocksBody": {
+      "type": "object",
+      "properties": {
+        "startLba": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "blockCount": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
     "WorkflowServiceRecordActivityTaskHeartbeatBody": {
       "type": "object",
       "properties": {
@@ -10631,6 +10894,18 @@
       },
       "description": "Keep the parameters in sync with:\n  - temporal.api.batch.v1.BatchOperationUpdateWorkflowExecutionOptions.\n  - temporal.api.workflow.v1.PostResetOperation.UpdateWorkflowOptions."
     },
+    "WorkflowServiceWriteBatchBody": {
+      "type": "object",
+      "properties": {
+        "writes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1BlockWrite"
+          }
+        }
+      }
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -11538,6 +11813,19 @@
         }
       },
       "description": "BatchOperationUpdateWorkflowExecutionOptions sends UpdateWorkflowExecutionOptions requests to batch workflows.\nKeep the parameters in sync with temporal.api.workflowservice.v1.UpdateWorkflowExecutionOptionsRequest."
+    },
+    "v1BlockWrite": {
+      "type": "object",
+      "properties": {
+        "lba": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "data": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
     },
     "v1BuildIdAssignmentRule": {
       "type": "object",
@@ -14223,6 +14511,22 @@
       },
       "description": "When StartWorkflowExecution uses the conflict policy WORKFLOW_ID_CONFLICT_POLICY_USE_EXISTING and\nthere is already an existing running workflow, OnConflictOptions defines actions to be taken on\nthe existing running workflow. In this case, it will create a WorkflowExecutionOptionsUpdatedEvent\nhistory event in the running workflow with the changes requested in this object."
     },
+    "v1OpenVolumeResponse": {
+      "type": "object",
+      "properties": {
+        "volumeId": {
+          "type": "string"
+        },
+        "sizeBytes": {
+          "type": "string",
+          "format": "int64"
+        },
+        "blockSizeBytes": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "v1Outcome": {
       "type": "object",
       "properties": {
@@ -14798,6 +15102,15 @@
       ],
       "default": "RATE_LIMIT_SOURCE_UNSPECIFIED",
       "description": "Source for the effective rate limit.\n\n - RATE_LIMIT_SOURCE_API: The value was set by the API.\n - RATE_LIMIT_SOURCE_WORKER: The value was set by a worker.\n - RATE_LIMIT_SOURCE_SYSTEM: The value was set as the system default."
+    },
+    "v1ReadBlocksResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
     },
     "v1RecordActivityTaskHeartbeatByIdResponse": {
       "type": "object",
@@ -18356,6 +18669,15 @@
         }
       },
       "title": "Represents the identifier used by a workflow author to define the workflow. Typically, the\nname of a function. This is sometimes referred to as the workflow's \"name\""
+    },
+    "v1WriteBatchResponse": {
+      "type": "object",
+      "properties": {
+        "writesApplied": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
     }
   }
 }

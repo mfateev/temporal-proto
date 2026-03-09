@@ -1470,4 +1470,38 @@ service WorkflowService {
             }
         };
     }
+
+    // OpenVolume reads metadata for an existing volume in the specified namespace.
+    rpc OpenVolume (OpenVolumeRequest) returns (OpenVolumeResponse) {
+        option (google.api.http) = {
+            get: "/namespaces/{namespace}/volumes/{volume_id}"
+            additional_bindings {
+                get: "/api/v1/namespaces/{namespace}/volumes/{volume_id}"
+            }
+        };
+    }
+
+    // ReadBlocks reads contiguous block data from an existing volume.
+    rpc ReadBlocks (ReadBlocksRequest) returns (ReadBlocksResponse) {
+        option (google.api.http) = {
+            post: "/namespaces/{namespace}/volumes/{volume_id}/read"
+            body: "*"
+            additional_bindings {
+                post: "/api/v1/namespaces/{namespace}/volumes/{volume_id}/read"
+                body: "*"
+            }
+        };
+    }
+
+    // WriteBatch writes one or more blocks to an existing volume atomically.
+    rpc WriteBatch (WriteBatchRequest) returns (WriteBatchResponse) {
+        option (google.api.http) = {
+            post: "/namespaces/{namespace}/volumes/{volume_id}/write-batch"
+            body: "*"
+            additional_bindings {
+                post: "/api/v1/namespaces/{namespace}/volumes/{volume_id}/write-batch"
+                body: "*"
+            }
+        };
+    }
 }
